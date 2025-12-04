@@ -1,0 +1,30 @@
+{
+  "name": "billpayment-backend",
+  "version": "1.0.0",
+  "description": "Bill Payment Backend with Supabase and TypeScript",
+  "main": "index.js",
+  "scripts": {
+    "dev": "supabase start",
+    "stop": "supabase stop",
+    "reset": "supabase db reset",
+    "deploy": "supabase functions deploy",
+    "deploy-all": "supabase functions deploy --no-verify-jwt",
+    "logs": "supabase functions logs",
+    "types": "supabase gen types typescript --local > types/supabase.ts"
+  },
+  "keywords": ["supabase", "typescript", "backend", "bill-payment"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.38.0"
+  }
+}
+
+
+
+
+
