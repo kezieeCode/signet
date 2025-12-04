@@ -1,0 +1,107 @@
+
+:root {
+  font-family: 'Inter', 'Satoshi', 'Manrope', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* Color Theme - Dark with bright yellow-green accent */
+  --accent-color: #7FFF00;
+  --accent-bright: #00FF88;
+  --primary-color: #CACACA;
+  --primary-dark: #A0A0A0;
+  --primary-light: #E5E5E5;
+  --text-color: #ffffff;
+  --text-secondary: #B0B0B0;
+  --background-color: #1a1a1a;
+  --background-dark: #0f0f0f;
+  --button-blue: #1e3a8a;
+  --light-green: #D1FA00;
+  --light-green-bg: #E8FF80;
+  --dark-green: #1a3a1a;
+  --white-bg: #ffffff;
+  --text-dark: #000000;
+  --text-grey: #666666;
+
+  color-scheme: dark;
+  color: var(--text-color);
+  background-color: var(--background-color);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: var(--primary-color);
+  text-decoration: inherit;
+}
+a:hover {
+  color: var(--primary-dark);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid var(--primary-color);
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.25s;
+}
+button:hover {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: var(--text-color);
+    background-color: var(--background-color);
+  }
+  a:hover {
+    color: var(--primary-dark);
+  }
+  button {
+    background-color: var(--primary-color);
+  }
+}
