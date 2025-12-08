@@ -361,6 +361,53 @@
   justify-content: space-between;
   gap: 2.5rem;
   min-width: 350px;
+  position: relative;
+}
+
+.studio-card,
+.network-card,
+.fellowship-card {
+  border-radius: 16px;
+  overflow: visible;
+  position: relative;
+  padding-right: 4rem;
+}
+
+.studio-card::before,
+.network-card::before,
+.fellowship-card::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 100px;
+  height: 100px;
+  background: var(--white-bg);
+  border-radius: 50%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.studio-card .feature-content,
+.network-card .feature-content,
+.fellowship-card .feature-content {
+  position: relative;
+  z-index: 2;
+}
+
+.studio-card .feature-content,
+.network-card .feature-content,
+.fellowship-card .feature-content {
+  text-align: left;
+}
+
+.studio-card .feature-icon,
+.network-card .feature-icon,
+.fellowship-card .feature-icon {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  z-index: 3;
 }
 
 .feature-content {
@@ -479,9 +526,9 @@
 }
 
 .crib-heading {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 800;
+  font-weight: 500;
   line-height: 1.2;
   color: var(--text-dark);
   margin: 0;
@@ -499,6 +546,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.crib-image-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
 }
 
 .crib-image-placeholder {

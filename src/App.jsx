@@ -13,6 +13,7 @@ import curvedImage from './assets/images/vectors/curved.png'
 import studioIcon from './assets/images/icons/studio.png'
 import networkIcon from './assets/images/icons/network.png'
 import fellowshipIcon from './assets/images/icons/fellowship.png'
+import speakImage from './assets/images/pictures/speak.png'
 
 function App() {
   const partners = [
@@ -95,7 +96,7 @@ function App() {
             </p>
             
             <div className="features-grid">
-              <div className="feature-box">
+              <div className="feature-box studio-card">
                 <div className="feature-content">
                   <h3 className="feature-title">Studio:</h3>
                   <p className="feature-text">Full-stack marketing powered by SigNet</p>
@@ -105,7 +106,7 @@ function App() {
                 </div>
               </div>
               
-              <div className="feature-box">
+              <div className="feature-box network-card">
                 <div className="feature-content">
                   <h3 className="feature-title">Network:</h3>
                   <p className="feature-text">Private network powered by the insight of our experts</p>
@@ -115,7 +116,7 @@ function App() {
                 </div>
               </div>
               
-              <div className="feature-box">
+              <div className="feature-box fellowship-card">
                 <div className="feature-content">
                   <h3 className="feature-title">Fellowship</h3>
                   <p className="feature-text">Onboarding & upskilling the next generation of experts</p>
@@ -144,9 +145,7 @@ function App() {
             </p>
           </div>
           <div className="crib-image">
-            <div className="crib-image-placeholder">
-              {/* Placeholder for the image - user can add the actual image later */}
-            </div>
+            <img src={speakImage} alt="Speak" className="crib-image-img" />
           </div>
         </div>
       </section>
