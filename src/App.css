@@ -3007,10 +3007,18 @@
 
 .gtm-studios-pricing-cta {
   display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.gtm-studios-pricing-cta-row {
+  display: flex;
+  flex-direction: row;
   align-items: flex-start;
   gap: 3rem;
   width: 100%;
-  max-width: 1200px;
 }
 
 .gtm-studios-pricing-cta-heading {
@@ -3020,16 +3028,8 @@
   line-height: 1.2;
   color: #7FFF00;
   margin: 0;
-  flex: 1;
+  flex: 0 1 auto;
   text-align: left;
-}
-
-.gtm-studios-pricing-cta-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  align-items: flex-start;
 }
 
 .gtm-studios-pricing-cta-text {
@@ -3038,6 +3038,7 @@
   line-height: 1.7;
   color: #B0B0B0;
   margin: 0;
+  flex: 1 1 auto;
   text-align: left;
 }
 
@@ -3052,6 +3053,8 @@
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
+  width: fit-content;
+  align-self: flex-start;
 }
 
 .gtm-studios-pricing-cta-button:hover {
@@ -3784,24 +3787,6 @@
   }
 }
 
-  .gtm-studios-pricing-cta {
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .gtm-studios-pricing-cta-heading {
-    text-align: center;
-  }
-
-  .gtm-studios-pricing-cta-content {
-    align-items: center;
-  }
-
-  .gtm-studios-pricing-cta-text {
-    text-align: center;
-  }
-}
-
 @media (max-width: 640px) {
   .gtm-studios-hero {
     padding: 2rem 1rem;
@@ -3878,23 +3863,26 @@
     margin-bottom: 3rem;
   }
 
-  .gtm-studios-pricing-cta {
+  .gtm-studios-pricing-cta-row {
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
   }
 
   .gtm-studios-pricing-cta-heading {
     text-align: center;
     font-size: clamp(1.75rem, 5vw, 2.5rem);
-  }
-
-  .gtm-studios-pricing-cta-content {
-    align-items: center;
+    min-width: auto;
   }
 
   .gtm-studios-pricing-cta-text {
     text-align: center;
     font-size: 1rem;
+  }
+  
+  .gtm-studios-pricing-cta-button {
+    align-self: center;
+    width: 100%;
+    max-width: 300px;
   }
 
   .gtm-studios-pricing-cta-button {

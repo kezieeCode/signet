@@ -915,13 +915,13 @@ function App() {
               </div>
 
               <div className="gtm-studios-pricing-cta">
-                <h3 className="gtm-studios-pricing-cta-heading">Can't find your exact fit?</h3>
-                <div className="gtm-studios-pricing-cta-content">
+                <div className="gtm-studios-pricing-cta-row">
+                  <h3 className="gtm-studios-pricing-cta-heading">Can't find your exact fit?</h3>
                   <p className="gtm-studios-pricing-cta-text">
                     No problem, every brief is unique. Tell us about yours and we'll build a tailored proposal asap. Book a slot and we'll be on it.
                   </p>
-                  <button className="gtm-studios-pricing-cta-button">Reach Us</button>
                 </div>
+                <button className="gtm-studios-pricing-cta-button">Reach Us</button>
               </div>
             </div>
           </section>
