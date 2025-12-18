@@ -1,5 +1,5 @@
 import './App.css'
-import { useRef, useState } from 'react'
+import { useRef, useState, useLayoutEffect } from 'react'
 import logoImage from './assets/images/logo .png'
 import logoBlackImage from './assets/images/logo-black.png'
 import collaborateImage from './assets/images/pictures/collaborate.png'
@@ -31,10 +31,66 @@ import crackImage from './assets/images/vectors/crack.png'
 function App() {
   const [currentPage, setCurrentPage] = useState('home')
   const [activeTestimonial, setActiveTestimonial] = useState(0)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  const headerRef = useRef(null)
   const row1Ref = useRef(null)
   const row2Ref = useRef(null)
   const [waitlistName, setWaitlistName] = useState('')
   const [waitlistEmail, setWaitlistEmail] = useState('')
+
+  useLayoutEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+      const shouldShow = scrollY > 20
+      
+      setIsScrolled(shouldShow)
+      
+      // Direct inline style manipulation as primary method
+      const headerEl = headerRef.current || document.querySelector('header.header')
+      if (headerEl) {
+        const isLightTheme = headerEl.classList.contains('header-light')
+        
+        if (shouldShow) {
+          // Apply styles directly via inline styles (highest priority)
+          if (isLightTheme) {
+            // White background for light theme pages
+            headerEl.style.setProperty('background-color', '#ffffff', 'important')
+            headerEl.style.setProperty('border-bottom', '1px solid rgba(0, 0, 0, 0.1)', 'important')
+          } else {
+            // Black background for dark theme pages
+            headerEl.style.setProperty('background-color', '#000000', 'important')
+            headerEl.style.setProperty('border-bottom', '1px solid rgba(255, 255, 255, 0.2)', 'important')
+          }
+          headerEl.style.setProperty('backdrop-filter', 'blur(20px)', 'important')
+          headerEl.style.setProperty('-webkit-backdrop-filter', 'blur(20px)', 'important')
+          headerEl.style.setProperty('box-shadow', '0 4px 20px rgba(0, 0, 0, 0.5)', 'important')
+          // Also add class for CSS fallback
+          headerEl.classList.add('scrolled')
+        } else {
+          // Remove styles when at top
+          headerEl.style.setProperty('background-color', 'transparent', 'important')
+          headerEl.style.setProperty('border-bottom', 'none', 'important')
+          headerEl.style.setProperty('backdrop-filter', 'none', 'important')
+          headerEl.style.setProperty('-webkit-backdrop-filter', 'none', 'important')
+          headerEl.style.setProperty('box-shadow', 'none', 'important')
+          headerEl.classList.remove('scrolled')
+        }
+      }
+    }
+
+    // Initial check
+    handleScroll()
+
+    // Add scroll listener
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    document.addEventListener('scroll', handleScroll, { passive: true })
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      document.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   const scrollRow = (rowRef, direction) => {
     if (rowRef.current) {
@@ -62,7 +118,7 @@ function App() {
   return (
     <div className={`app ${currentPage === 'gtm-studios' ? 'gtm-studios-theme' : ''} ${currentPage === 'learns' ? 'learns-theme' : ''}`}>
       {/* Header */}
-      <header className={`header ${currentPage === 'gtm-studios' || currentPage === 'learns' ? 'header-light' : ''}`}>
+      <header ref={headerRef} className={`header ${currentPage === 'gtm-studios' || currentPage === 'learns' ? 'header-light' : ''} ${isScrolled ? 'scrolled' : ''}`}>
         <div className="header-container">
           <div className="logo-section">
             <img 
@@ -77,34 +133,79 @@ function App() {
               <a 
                 href="#" 
                 className={`nav-link ${currentPage === 'home' ? 'active' : ''}`}
-                onClick={(e) => { e.preventDefault(); setCurrentPage('home'); }}
+                onClick={(e) => { e.preventDefault(); setCurrentPage('home'); setMobileMenuOpen(false); }}
               >
                 Home
               </a>
               <a 
                 href="#" 
                 className={`nav-link ${currentPage === 'gtm-studios' ? 'active' : ''}`}
-                onClick={(e) => { e.preventDefault(); setCurrentPage('gtm-studios'); }}
+                onClick={(e) => { e.preventDefault(); setCurrentPage('gtm-studios'); setMobileMenuOpen(false); }}
               >
                 GTM Studios
               </a>
               <a 
                 href="#" 
                 className={`nav-link ${currentPage === 'fellowship' ? 'active' : ''}`}
-                onClick={(e) => { e.preventDefault(); setCurrentPage('fellowship'); }}
+                onClick={(e) => { e.preventDefault(); setCurrentPage('fellowship'); setMobileMenuOpen(false); }}
               >
                 Fellowship
               </a>
               <a 
                 href="#" 
                 className={`nav-link ${currentPage === 'learns' ? 'active' : ''}`}
-                onClick={(e) => { e.preventDefault(); setCurrentPage('learns'); }}
+                onClick={(e) => { e.preventDefault(); setCurrentPage('learns'); setMobileMenuOpen(false); }}
               >
                 learns
               </a>
             </nav>
             <button className="btn-member">Become A Member</button>
             <button className="btn-call">Book A Call</button>
+          </div>
+
+          <button 
+            className="mobile-menu-toggle"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span className={`hamburger-line ${mobileMenuOpen ? 'open' : ''}`}></span>
+            <span className={`hamburger-line ${mobileMenuOpen ? 'open' : ''}`}></span>
+            <span className={`hamburger-line ${mobileMenuOpen ? 'open' : ''}`}></span>
+          </button>
+
+          <div className={`mobile-menu ${mobileMenuOpen ? 'open' : ''}`}>
+            <nav className="mobile-nav-links">
+              <a 
+                href="#" 
+                className={`mobile-nav-link ${currentPage === 'home' ? 'active' : ''}`}
+                onClick={(e) => { e.preventDefault(); setCurrentPage('home'); setMobileMenuOpen(false); }}
+              >
+                Home
+              </a>
+              <a 
+                href="#" 
+                className={`mobile-nav-link ${currentPage === 'gtm-studios' ? 'active' : ''}`}
+                onClick={(e) => { e.preventDefault(); setCurrentPage('gtm-studios'); setMobileMenuOpen(false); }}
+              >
+                GTM Studios
+              </a>
+              <a 
+                href="#" 
+                className={`mobile-nav-link ${currentPage === 'fellowship' ? 'active' : ''}`}
+                onClick={(e) => { e.preventDefault(); setCurrentPage('fellowship'); setMobileMenuOpen(false); }}
+              >
+                Fellowship
+              </a>
+              <a 
+                href="#" 
+                className={`mobile-nav-link ${currentPage === 'learns' ? 'active' : ''}`}
+                onClick={(e) => { e.preventDefault(); setCurrentPage('learns'); setMobileMenuOpen(false); }}
+              >
+                learns
+              </a>
+              <button className="mobile-btn-member">Become A Member</button>
+              <button className="mobile-btn-call">Book A Call</button>
+            </nav>
           </div>
       </div>
       </header>
